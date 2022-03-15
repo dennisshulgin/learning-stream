@@ -1,12 +1,13 @@
 package classes;
 
 import interfaces.*;
+import java.util.*;
 import java.util.stream.*;
 
 public class DepartmentImpl implements Department{
 	private String title;
 
-	private Stream<User> users;
+	private List<User> users;
 
 	private User chief;
 
@@ -19,13 +20,13 @@ public class DepartmentImpl implements Department{
 		return title;
 	}
 
-	public void setUsers(Stream<User> users) {
+	public void setUsers(List<User> users) {
 		this.users = users;
 	}
 
 	@Override
 	public Stream<User> getUsers() {
-		return users;
+		return users.stream();
 	}
 
 	public void setChief(User chief) {
@@ -41,6 +42,4 @@ public class DepartmentImpl implements Department{
 	public String toString() {
 		return title;
 	}
-
-
 }

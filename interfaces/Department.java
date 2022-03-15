@@ -1,5 +1,6 @@
 package interfaces;
 
+import java.util.*;
 import java.util.stream.*;
 
 public interface Department {
@@ -9,7 +10,7 @@ public interface Department {
 
 	Stream<User> getUsers();
 
-	void setUsers(Stream<User> users);
+	void setUsers(List<User> users);
 	
 	void setChief(User user);
 }

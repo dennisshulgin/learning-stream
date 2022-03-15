@@ -1,13 +1,14 @@
 package classes;
 
 import interfaces.*;
+import java.util.*;
 import java.util.stream.*;
 
 public class CompanyImpl implements Company {
 
 	private String title;
 
-	private Stream<Department> departments;
+	private List<Department> departments;
 	
 	public CompanyImpl(String title) {
 		this.title = title;
@@ -17,13 +18,13 @@ public class CompanyImpl implements Company {
 		return title;
 	}
 
-	public void setDepartments(Stream<Department> departments) {
+	public void setDepartments(List<Department> departments) {
 		this.departments = departments;
 	}
 
 	@Override
 	public Stream<Department> getDepartments() {
-		return departments;
+		return departments.stream();
 	}
 
 	@Override
