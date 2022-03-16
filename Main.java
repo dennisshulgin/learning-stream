@@ -2,6 +2,7 @@ import interfaces.*;
 import classes.*;
 import java.util.*;
 import java.util.stream.*;
+import java.util.function.*;
 import static java.util.stream.Collectors.*;
 
 public class Main {
@@ -43,7 +44,7 @@ public class Main {
 		System.out.println(usersByChief);
 
 
-		Map<Department, List<User>> minSal = getMinSalaryDepartments(com1); 
+		Map<Department, Integer> minSal = getMinSalaryDepartments(com1); 
 		System.out.println(minSal);
 	}
 
@@ -63,15 +64,11 @@ public class Main {
 			.collect(groupingBy(Department::getChief, flatMapping(Department::getUsers, toList())));
 	}
 	
-	public static Map<Department, List<User>> getMinSalaryDepartments(Company company) {
+	public static Map<Department, Integer> getMinSalaryDepartments(Company company) {
 		return company.getDepartments()
 			.flatMap(Department::getUsers)
 			.peek(x -> System.out.println(x.getDepartment()))
-			.collect(groupingBy(User::getDepartment,
-				collectingAndThen(mapping(User::getSalary, 
-					minBy(Comparator.naturalOrder())),
-				Optional::get);
-		
+			.collect(toMap(User::getDepartment, User::getSalary, BinaryOperator.minBy(Comparator.naturalOrder())));
 	}
 
 
